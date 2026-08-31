@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as ContactoRouteImport } from './routes/contacto'
+import { Route as FinalizarCompraRouteImport } from './routes/finalizar-compra'
 import { Route as NosotrosRouteImport } from './routes/nosotros'
 import { Route as TrasladosGrupalesRouteImport } from './routes/traslados-grupales'
 
@@ -30,6 +31,11 @@ const ContactoRoute = ContactoRouteImport.update({
   path: '/contacto',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FinalizarCompraRoute = FinalizarCompraRouteImport.update({
+  id: '/finalizar-compra',
+  path: '/finalizar-compra',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const NosotrosRoute = NosotrosRouteImport.update({
   id: '/nosotros',
   path: '/nosotros',
@@ -45,6 +51,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/blog': typeof BlogRoute
   '/contacto': typeof ContactoRoute
+  '/finalizar-compra': typeof FinalizarCompraRoute
   '/nosotros': typeof NosotrosRoute
   '/traslados-grupales': typeof TrasladosGrupalesRoute
 }
@@ -52,6 +59,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/blog': typeof BlogRoute
   '/contacto': typeof ContactoRoute
+  '/finalizar-compra': typeof FinalizarCompraRoute
   '/nosotros': typeof NosotrosRoute
   '/traslados-grupales': typeof TrasladosGrupalesRoute
 }
@@ -60,19 +68,33 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/blog': typeof BlogRoute
   '/contacto': typeof ContactoRoute
+  '/finalizar-compra': typeof FinalizarCompraRoute
   '/nosotros': typeof NosotrosRoute
   '/traslados-grupales': typeof TrasladosGrupalesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/blog' | '/contacto' | '/nosotros' | '/traslados-grupales'
+  fullPaths:
+    | '/'
+    | '/blog'
+    | '/contacto'
+    | '/finalizar-compra'
+    | '/nosotros'
+    | '/traslados-grupales'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/blog' | '/contacto' | '/nosotros' | '/traslados-grupales'
+  to:
+    | '/'
+    | '/blog'
+    | '/contacto'
+    | '/finalizar-compra'
+    | '/nosotros'
+    | '/traslados-grupales'
   id:
     | '__root__'
     | '/'
     | '/blog'
     | '/contacto'
+    | '/finalizar-compra'
     | '/nosotros'
     | '/traslados-grupales'
   fileRoutesById: FileRoutesById
@@ -81,6 +103,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BlogRoute: typeof BlogRoute
   ContactoRoute: typeof ContactoRoute
+  FinalizarCompraRoute: typeof FinalizarCompraRoute
   NosotrosRoute: typeof NosotrosRoute
   TrasladosGrupalesRoute: typeof TrasladosGrupalesRoute
 }
@@ -108,6 +131,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/finalizar-compra': {
+      id: '/finalizar-compra'
+      path: '/finalizar-compra'
+      fullPath: '/finalizar-compra'
+      preLoaderRoute: typeof FinalizarCompraRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/nosotros': {
       id: '/nosotros'
       path: '/nosotros'
@@ -129,6 +159,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BlogRoute: BlogRoute,
   ContactoRoute: ContactoRoute,
+  FinalizarCompraRoute: FinalizarCompraRoute,
   NosotrosRoute: NosotrosRoute,
   TrasladosGrupalesRoute: TrasladosGrupalesRoute,
 }
