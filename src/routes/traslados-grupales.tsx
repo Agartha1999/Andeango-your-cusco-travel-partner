@@ -7,13 +7,13 @@ import { FiltersSidebar, type Filtros } from "@/components/grupales/filters-side
 import { BusCard } from "@/components/grupales/bus-card";
 import { useBooking } from "@/lib/booking-store";
 
-type Search = { origen?: string; destino?: string; fecha?: string };
+type Search = { origen: string; destino: string; fecha: string };
 
 export const Route = createFileRoute("/traslados-grupales")({
   validateSearch: (search: Record<string, unknown>): Search => ({
-    origen: typeof search.origen === "string" ? search.origen : undefined,
-    destino: typeof search.destino === "string" ? search.destino : undefined,
-    fecha: typeof search.fecha === "string" ? search.fecha : undefined,
+    origen: typeof search["origen"] === "string" ? search["origen"] : "Ollantaytambo",
+    destino: typeof search["destino"] === "string" ? search["destino"] : "Cusco",
+    fecha: typeof search["fecha"] === "string" ? search["fecha"] : "2026-08-30",
   }),
   head: () => ({
     meta: [
