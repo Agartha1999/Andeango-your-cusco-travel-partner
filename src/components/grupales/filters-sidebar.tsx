@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronUp, SlidersHorizontal } from "lucide-react";
+import { ChevronUp, CloudSun, Moon, SlidersHorizontal, Sun, Sunset } from "lucide-react";
 import { FRANJAS, OPERADORES, TIPOS_VEHICULO } from "@/data/mock";
 
 export type Filtros = { franjas: string[]; tipos: string[]; operadores: string[] };
@@ -41,7 +41,8 @@ export function FiltersSidebar({ filtros, onChange }: Props) {
             {FRANJAS.map((f) => (
               <Check
                 key={f.id}
-                label={`${f.icon} ${f.label}`}
+                label={f.label}
+                icon={ICONOS[f.id]}
                 checked={filtros.franjas.includes(f.id)}
                 onChange={() => onChange({ ...filtros, franjas: toggle(filtros.franjas, f.id) })}
               />
@@ -92,7 +93,24 @@ function Group({ title, children }: { title: string; children: React.ReactNode }
   );
 }
 
-function Check({ label, checked, onChange }: { label: string; checked: boolean; onChange: () => void }) {
+const ICONOS: Record<string, React.ReactNode> = {
+  manana: <CloudSun className="h-3.5 w-3.5 text-gold" />,
+  tarde: <Sun className="h-3.5 w-3.5 text-gold" />,
+  atardecer: <Sunset className="h-3.5 w-3.5 text-gold" />,
+  noche: <Moon className="h-3.5 w-3.5 text-navy" />,
+};
+
+function Check({
+  label,
+  checked,
+  onChange,
+  icon,
+}: {
+  label: string;
+  checked: boolean;
+  onChange: () => void;
+  icon?: React.ReactNode;
+}) {
   return (
     <label className="flex cursor-pointer items-center gap-2 py-1 text-sm text-navy-soft">
       <input
@@ -101,6 +119,7 @@ function Check({ label, checked, onChange }: { label: string; checked: boolean; 
         onChange={onChange}
         className="h-4 w-4 shrink-0 accent-[oklch(0.24_0.08_265)]"
       />
+      {icon}
       {label}
     </label>
   );

@@ -15,6 +15,7 @@ import { Route as ContactoRouteImport } from './routes/contacto'
 import { Route as FinalizarCompraRouteImport } from './routes/finalizar-compra'
 import { Route as NosotrosRouteImport } from './routes/nosotros'
 import { Route as TrasladosGrupalesRouteImport } from './routes/traslados-grupales'
+import { Route as TrasladosPrivadosRouteImport } from './routes/traslados-privados'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -46,6 +47,11 @@ const TrasladosGrupalesRoute = TrasladosGrupalesRouteImport.update({
   path: '/traslados-grupales',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TrasladosPrivadosRoute = TrasladosPrivadosRouteImport.update({
+  id: '/traslados-privados',
+  path: '/traslados-privados',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -54,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/finalizar-compra': typeof FinalizarCompraRoute
   '/nosotros': typeof NosotrosRoute
   '/traslados-grupales': typeof TrasladosGrupalesRoute
+  '/traslados-privados': typeof TrasladosPrivadosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +69,7 @@ export interface FileRoutesByTo {
   '/finalizar-compra': typeof FinalizarCompraRoute
   '/nosotros': typeof NosotrosRoute
   '/traslados-grupales': typeof TrasladosGrupalesRoute
+  '/traslados-privados': typeof TrasladosPrivadosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,6 +79,7 @@ export interface FileRoutesById {
   '/finalizar-compra': typeof FinalizarCompraRoute
   '/nosotros': typeof NosotrosRoute
   '/traslados-grupales': typeof TrasladosGrupalesRoute
+  '/traslados-privados': typeof TrasladosPrivadosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -81,6 +90,7 @@ export interface FileRouteTypes {
     | '/finalizar-compra'
     | '/nosotros'
     | '/traslados-grupales'
+    | '/traslados-privados'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -89,6 +99,7 @@ export interface FileRouteTypes {
     | '/finalizar-compra'
     | '/nosotros'
     | '/traslados-grupales'
+    | '/traslados-privados'
   id:
     | '__root__'
     | '/'
@@ -97,6 +108,7 @@ export interface FileRouteTypes {
     | '/finalizar-compra'
     | '/nosotros'
     | '/traslados-grupales'
+    | '/traslados-privados'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -106,6 +118,7 @@ export interface RootRouteChildren {
   FinalizarCompraRoute: typeof FinalizarCompraRoute
   NosotrosRoute: typeof NosotrosRoute
   TrasladosGrupalesRoute: typeof TrasladosGrupalesRoute
+  TrasladosPrivadosRoute: typeof TrasladosPrivadosRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -152,6 +165,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TrasladosGrupalesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/traslados-privados': {
+      id: '/traslados-privados'
+      path: '/traslados-privados'
+      fullPath: '/traslados-privados'
+      preLoaderRoute: typeof TrasladosPrivadosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -162,6 +182,7 @@ const rootRouteChildren: RootRouteChildren = {
   FinalizarCompraRoute: FinalizarCompraRoute,
   NosotrosRoute: NosotrosRoute,
   TrasladosGrupalesRoute: TrasladosGrupalesRoute,
+  TrasladosPrivadosRoute: TrasladosPrivadosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
